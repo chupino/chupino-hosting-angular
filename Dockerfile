@@ -5,6 +5,8 @@ RUN npm install -g @angular/cli
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-EXPOSE 4200
+RUN npm run build --prod
 
-CMD ["npm", "run", "build", "--prod"]
+FROM nginx:alpine
+COPY --from=build /app/dist/tesis /usr/share/nginx/html
+EXPOSE 80
