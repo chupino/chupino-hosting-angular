@@ -8,7 +8,7 @@ COPY . .
 RUN npm run build --prod
 
 # Etapa 2: Configuración del servidor Nginx
-FROM nginx:alpine
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+FROM nginx:latest AS ngi
 COPY --from=build /app/dist/tesis /usr/share/nginx/html
-CMD ["nginx", "-g", "daemon off;"]
+COPY nginx.conf  /etc/nginx/conf.d/default.conf
+EXPOSE 80
