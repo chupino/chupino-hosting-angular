@@ -1,5 +1,5 @@
 # frontend/Dockerfile
-FROM node:20-alpine
+FROM node:20-alpine as build
 WORKDIR /app
 RUN npm install -g @angular/cli
 COPY package.json package-lock.json ./
