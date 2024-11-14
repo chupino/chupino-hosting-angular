@@ -9,5 +9,6 @@ RUN npm run build
 
 # Etapa 2: Configuración del servidor Nginx
 FROM nginx:latest AS ngi
-COPY --from=build /app/dist/tesis /usr/share/nginx/html
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/dist/tesis/browser /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
