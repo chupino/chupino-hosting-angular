@@ -5,7 +5,7 @@ RUN npm install -g @angular/cli
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npm run build --prod
+RUN ng build --prod
 
 # Etapa 2: Configuración del servidor Nginx
 FROM nginx:latest AS ngi
